@@ -1807,7 +1807,6 @@ classdef Sources2D < handle
                 fprintf('The current workspace has been saved into file \n\t%s\n\n', file_path);
                 fp.close();
             end
-
             % if ~exist('zip_file_path', 'var') || ~isempty(zip_file_path)
             if exist('zip_file_path', 'var') && ~isempty(zip_file_path)
                [zip_dir, zip_name, ~] = fileparts(get_fullname(zip_file_path));
