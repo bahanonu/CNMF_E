@@ -33,8 +33,7 @@ elseif strcmpi(ext,'.hdf5') || strcmpi(ext,'.h5');
     info = hdf5info(path_to_file);
     temp = squeeze(info.GroupHierarchy.Datasets.Dims);
     % dims = temp([2, 3, 5]);
-    % Fix for normal 3D data - Biafra Oct 21, 2018
-    dims = temp([1, 2, 3]);
+    dims = temp;
 elseif strcmpi(ext, '.avi')
     obj = audiovideo.mmreader(path_to_file);
 
