@@ -45,16 +45,14 @@ Please read more from the [wiki page](https://github.com/zhoupc/CNMF_E/wiki)
 
 ## Python 
 
-This repository is the native implementation of the CNMF-E model & algorithms using MATLAB. There is also a python implementation of the model in [CaImAn](https://github.com/flatironinstitute/CaImAn). However, these two implementations are not exactly the same in some details and we are still working to make them consistent. For those people who love Python but still want to run CNMF-E using the MATLAB implementation, we provided a Python wrapper (thanks to [Tim Machado](https://github.com/tamachado)) for calling MATLAB version CNMF-E in Python.  You can use the ipython notebook file python_wrapper/ analyze_cnmfe_matlab.ipynb to get started. 
-
-
+This repository is the native implementation of the CNMF-E model & algorithms using MATLAB. There is also a python implementation of the model in [CaImAn](https://github.com/flatironinstitute/CaImAn). However, these two implementations are not exactly the same in some details and we are still working to make them consistent. For those people who love Python but still want to run CNMF-E using the MATLAB implementation, we provided a Python wrapper (thanks to [Tim Machado](https://github.com/tamachado)) for calling MATLAB version CNMF-E in Python.  You can use the ipython notebook file python_wrapper/ analyze_cnmfe_matlab.ipynb to get started. In the meanwhile, [Thomas Akam](https://github.com/ThomasAkam) provided a solution to load CNMF-E results from python, please check [it](https://github.com/ThomasAkam/CNMF-E_mat2npy) out . 
 
 ## Reference
 **Please cite these papers when you use CNMF-E in your research. Thanks!**
 
-**Zhou, P.**, Resendez, S.L., Rodriguez-Romaguera, J., Jimenez, J.C, Neufeld, S.Q., Giovannucci, A., Friedrich, J., Pnevmatikakis, E.A., Stuber, Garret D ,  Stuber, G.D., Hen, R., Kheirbek, M.A., Sabatini, B.L., Kass, R.E., Paninski, L. (2018). [Efficient and accurate extraction of in vivo calcium signals from microendoscopic video data](https://elifesciences.org/articles/28728). eLife,  pp.e28728.  (When you use the (Corr+PNR) algorithm in initialization step or use the ring model for estimating background components)
+**Zhou, P.**, Resendez, S.L., Rodriguez-Romaguera, J., Jimenez, J.C, Neufeld, S.Q., Giovannucci, A., Friedrich, J., Pnevmatikakis, E.A., Stuber, Garret D ,  Stuber, G.D., Hen, R., Kheirbek, M.A., Sabatini, B.L., Kass, R.E., Paninski, L. (2018). [Efficient and accurate extraction of in vivo calcium signals from microendoscopic video data](https://elifesciences.org/articles/28728). eLife,  pp.e28728.  (When you use the (Corr+PNR) algorithm in the initialization step or use the ring model for estimating background components)
 
-Pnevmatikakis, E.A., Soudry, D., Gao, Y., Machado, T.A., Merel, J., Pfau, D., Reardon, T., Mu, Y., Lacefield, C., Yang, W. and Ahrens, M., 2016. [Simultaneous denoising, deconvolution, and demixing of calcium imaging data](http://www.sciencedirect.com/science/article/pii/S0896627315010843). Neuron, 89(2), pp.285-299. (The original CNMF framework paper) 
+Pnevmatikakis, E.A., Soudry, D., Gao, Y., Machado, T.A., Merel, J., Pfau, D., Reardon, T., Mu, Y., Lacefield, C., Yang, W., Ahrens, M., Bruno, R.,Jessell, T.M., Peterka, D.S., Yuste, R., and Paninski L., 2016. [Simultaneous denoising, deconvolution, and demixing of calcium imaging data](http://www.sciencedirect.com/science/article/pii/S0896627315010843). Neuron, 89(2), pp.285-299. (The original CNMF framework paper; When you use the vanilla CNMF model in this paper ) 
 
 
 
