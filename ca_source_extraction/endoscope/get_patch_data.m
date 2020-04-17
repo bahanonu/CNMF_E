@@ -19,13 +19,13 @@ catch
     isOnWorker = false;
 end
 
-%% check whether the mat_data has been loaded into the base space 
-mat_file = mat_data.Properties.Source();
+%% check whether the mat_data has been loaded into the base space
+mat_file = mat_data.Properties.Source(1:end);
 data_nam = sprintf('mat_data_%d', string2hash(mat_file));
 if isOnWorker || isempty(evalin('base', sprintf('whos(''%s'')', data_nam)))
     ws = 'caller';   % use the current workspace
     data_nam = 'mat_data'; % load data from mat file
-    isOnWorker = true; 
+    isOnWorker = true;
 else
     ws = 'base';
 end
@@ -33,32 +33,32 @@ end
 dims = mat_data.dims;
 d1 = dims(1);
 d2 = dims(2);
-T = dims(3); 
+T = dims(3);
 if ~exist('patch_pos', 'var') || isempty(patch_pos)
-    patch_pos = [1, d1, 1, d2]; 
-end 
+    patch_pos = [1, d1, 1, d2];
+end
 if ~exist('frame_range', 'var') || isempty(frame_range)
-    frame_range = [1, T]; 
-end 
+    frame_range = [1, T];
+end
 w_overlap = mat_data.w_overlap;
 
 idx_r = mat_data.block_idx_r;
 idx_c = mat_data.block_idx_c;
 dtype = mat_data.dtype;
 
-% determine the smallest block that includes the batch 
-r0_patch = patch_pos(1); 
-r1_patch = patch_pos(2); 
-c0_patch = patch_pos(3); 
-c1_patch = patch_pos(4); 
-ind_r0 = find(idx_r<=r0_patch, 1, 'last'); 
-ind_r1 = find(idx_r>=r1_patch, 1, 'first'); 
-ind_c0 = find(idx_c<=c0_patch, 1, 'last'); 
-ind_c1 = find(idx_c>=c1_patch, 1, 'first'); 
+% determine the smallest block that includes the batch
+r0_patch = patch_pos(1);
+r1_patch = patch_pos(2);
+c0_patch = patch_pos(3);
+c1_patch = patch_pos(4);
+ind_r0 = find(idx_r<=r0_patch, 1, 'last');
+ind_r1 = find(idx_r>=r1_patch, 1, 'first');
+ind_c0 = find(idx_c<=c0_patch, 1, 'last');
+ind_c1 = find(idx_c>=c1_patch, 1, 'first');
 
 % indices for block coordinates
 block_idx_r = idx_r(ind_r0:ind_r1);
-block_idx_c = idx_c(ind_c0:ind_c1); 
+block_idx_c = idx_c(ind_c0:ind_c1);
 
 %% pre-allocate a matrix
 nr = block_idx_r(end)-block_idx_r(1) + 1;
@@ -93,7 +93,7 @@ if ~with_overlap
 end
 
 
-%% convert string to hash values 
+%% convert string to hash values
 function hash=string2hash(str,type)
 % This function generates a hash value from a text string
 %
@@ -105,15 +105,15 @@ function hash=string2hash(str,type)
 %   hash : The hash value, integer value between 0 and 2^32-1
 %   type : Type of has 'djb2' (default) or 'sdbm'
 %
-% From c-code on : http://www.cse.yorku.ca/~oz/hash.html 
+% From c-code on : http://www.cse.yorku.ca/~oz/hash.html
 %
 % djb2
-%  this algorithm was first reported by dan bernstein many years ago 
+%  this algorithm was first reported by dan bernstein many years ago
 %  in comp.lang.c
 %
 % sdbm
 %  this algorithm was created for sdbm (a public-domain reimplementation of
-%  ndbm) database library. it was found to do well in scrambling bits, 
+%  ndbm) database library. it was found to do well in scrambling bits,
 %  causing better distribution of the keys and fewer splits. it also happens
 %  to be a good general hashing function with good distribution.
 %
@@ -130,13 +130,13 @@ str=double(str);
 if(nargin<2), type='djb2'; end
 switch(type)
     case 'djb2'
-        hash = 5381*ones(size(str,1),1); 
-        for i=1:size(str,2), 
-            hash = mod(hash * 33 + str(:,i), 2^32-1); 
+        hash = 5381*ones(size(str,1),1);
+        for i=1:size(str,2),
+            hash = mod(hash * 33 + str(:,i), 2^32-1);
         end
     case 'sdbm'
         hash = zeros(size(str,1),1);
-        for i=1:size(str,2), 
+        for i=1:size(str,2),
             hash = mod(hash * 65599 + str(:,i), 2^32-1);
         end
     otherwise
